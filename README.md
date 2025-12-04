@@ -2,13 +2,13 @@
   <img src="./.asset/grounding_dino_logo.png" width="30%">
 </div>
 
-# :sauropod: Grounding DINO 
+# :sauropod: Grounding DINO
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/grounding-dino-marrying-dino-with-grounded/zero-shot-object-detection-on-mscoco)](https://paperswithcode.com/sota/zero-shot-object-detection-on-mscoco?p=grounding-dino-marrying-dino-with-grounded) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/grounding-dino-marrying-dino-with-grounded/zero-shot-object-detection-on-odinw)](https://paperswithcode.com/sota/zero-shot-object-detection-on-odinw?p=grounding-dino-marrying-dino-with-grounded) \
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/grounding-dino-marrying-dino-with-grounded/object-detection-on-coco-minival)](https://paperswithcode.com/sota/object-detection-on-coco-minival?p=grounding-dino-marrying-dino-with-grounded) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/grounding-dino-marrying-dino-with-grounded/object-detection-on-coco)](https://paperswithcode.com/sota/object-detection-on-coco?p=grounding-dino-marrying-dino-with-grounded)
 
 
-**[IDEA-CVR, IDEA-Research](https://github.com/IDEA-Research)** 
+**[IDEA-CVR, IDEA-Research](https://github.com/IDEA-Research)**
 
 [Shilong Liu](http://www.lsl.zone/), [Zhaoyang Zeng](https://scholar.google.com/citations?user=U_cvvUwAAAAJ&hl=zh-CN&oi=ao), [Tianhe Ren](https://rentainhe.github.io/), [Feng Li](https://scholar.google.com/citations?user=ybRe9GcAAAAJ&hl=zh-CN), [Hao Zhang](https://scholar.google.com/citations?user=B8hPxMQAAAAJ&hl=zh-CN), [Jie Yang](https://github.com/yangjie-cv), [Chunyuan Li](https://scholar.google.com/citations?user=Zd7WmXUAAAAJ&hl=zh-CN&oi=ao), [Jianwei Yang](https://jwyang.github.io/), [Hang Su](https://scholar.google.com/citations?hl=en&user=dxN1_X0AAAAJ&view_op=list_works&sortby=pubdate), [Jun Zhu](https://scholar.google.com/citations?hl=en&user=axsP38wAAAAJ), [Lei Zhang](https://www.leizhang.org/)<sup>:email:</sup>.
 
@@ -33,8 +33,8 @@ PyTorch implementation and pretrained models for Grounding DINO. For details, se
 - :hibiscus: [[Accelerate Image Annotation with SAM and GroundingDINO by Roboflow AI](https://youtu.be/oEQYStnF2l8)]
 - :white_flower: [[Autodistill: Train YOLOv8 with ZERO Annotations based on Grounding-DINO and Grounded-SAM by Roboflow AI](https://github.com/autodistill/autodistill)]
 
-<!-- Grounding DINO Methods | 
-[![arXiv](https://img.shields.io/badge/arXiv-2303.05499-b31b1b.svg)](https://arxiv.org/abs/2303.05499) 
+<!-- Grounding DINO Methods |
+[![arXiv](https://img.shields.io/badge/arXiv-2303.05499-b31b1b.svg)](https://arxiv.org/abs/2303.05499)
 [![YouTube](https://badges.aleen42.com/src/youtube.svg)](https://youtu.be/wxWDt5UiwY8) -->
 
 <!-- Grounding DINO Demos |
@@ -46,7 +46,7 @@ PyTorch implementation and pretrained models for Grounding DINO. For details, se
 
 ## :sparkles: Highlight Projects
 
-- [Semantic-SAM: a universal image segmentation model to enable segment and recognize anything at any desired granularity.](https://github.com/UX-Decoder/Semantic-SAM), 
+- [Semantic-SAM: a universal image segmentation model to enable segment and recognize anything at any desired granularity.](https://github.com/UX-Decoder/Semantic-SAM),
 - [DetGPT: Detect What You Need via Reasoning](https://github.com/OptimalScale/DetGPT)
 - [Grounded-SAM: Marrying Grounding DINO with Segment Anything](https://github.com/IDEA-Research/Grounded-Segment-Anything)
 - [Grounding DINO with Stable Diffusion](demo/image_editing_with_groundingdino_stablediffusion.ipynb)
@@ -101,44 +101,44 @@ Marrying <a href="https://github.com/IDEA-Research/GroundingDINO">Grounding DINO
 - It outputs `900` (by default) object boxes. Each box has similarity scores across all input words. (as shown in Figures below.)
 - We defaultly choose the boxes whose highest similarities are higher than a `box_threshold`.
 - We extract the words whose similarities are higher than the `text_threshold` as predicted labels.
-- If you want to obtain objects of specific phrases, like the `dogs` in the sentence `two dogs with a stick.`, you can select the boxes with highest text similarities with `dogs` as final outputs. 
+- If you want to obtain objects of specific phrases, like the `dogs` in the sentence `two dogs with a stick.`, you can select the boxes with highest text similarities with `dogs` as final outputs.
 - Note that each word can be split to **more than one** tokens with different tokenlizers. The number of words in a sentence may not equal to the number of text tokens.
 - We suggest separating different category names with `.` for Grounding DINO.
 ![model_explain1](.asset/model_explan1.PNG)
 ![model_explain2](.asset/model_explan2.PNG)
 
-## :label: TODO 
+## :label: TODO
 
 - [x] Release inference code and demo.
 - [x] Release checkpoints.
 - [x] Grounding DINO with Stable Diffusion and GLIGEN demos.
 - [ ] Release training codes.
 
-## :hammer_and_wrench: Install 
+## :hammer_and_wrench: Install
 
 **Note:**
 
 0. If you have a CUDA environment, please make sure the environment variable `CUDA_HOME` is set. It will be compiled under CPU-only mode if no CUDA available.
 
-Please make sure following the installation steps strictly, otherwise the program may produce: 
+Please make sure following the installation steps strictly, otherwise the program may produce:
 ```bash
 NameError: name '_C' is not defined
 ```
 
 If this happened, please reinstalled the groundingDINO by reclone the git and do all the installation steps again.
- 
+
 #### how to check cuda:
 ```bash
 echo $CUDA_HOME
 ```
 If it print nothing, then it means you haven't set up the path/
 
-Run this so the environment variable will be set under current shell. 
+Run this so the environment variable will be set under current shell.
 ```bash
 export CUDA_HOME=/path/to/cuda-11.3
 ```
 
-Notice the version of cuda should be aligned with your CUDA runtime, for there might exists multiple cuda at the same time. 
+Notice the version of cuda should be aligned with your CUDA runtime, for there might exists multiple cuda at the same time.
 
 If you want to set the CUDA_HOME permanently, store it using:
 
@@ -153,7 +153,7 @@ echo $CUDA_HOME
 
 In this example, /path/to/cuda-11.3 should be replaced with the path where your CUDA toolkit is installed. You can find this by typing **which nvcc** in your terminal:
 
-For instance, 
+For instance,
 if the output is /usr/local/cuda/bin/nvcc, then:
 ```bash
 export CUDA_HOME=/usr/local/cuda
@@ -262,7 +262,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python demo/test_ap_on_coco.py \
  -c groundingdino/config/GroundingDINO_SwinT_OGC.py \
  -p weights/groundingdino_swint_ogc.pth \
- --anno_path /path/to/annoataions/ie/instances_val2017.json \
+ --anno_path /path/to/annotations/ie/instances_val2017.json \
  --image_dir /path/to/imagedir/ie/val2017
 ```
 
@@ -298,7 +298,7 @@ python demo/test_ap_on_coco.py \
       <td>Swin-B</td>
       <td>COCO,O365,GoldG,Cap4M,OpenImage,ODinW-35,RefCOCO</td>
       <td>56.7 </td>
-      <td><a href="https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha2/groundingdino_swinb_cogcoor.pth">GitHub link</a>  | <a href="https://huggingface.co/ShilongLiu/GroundingDINO/resolve/main/groundingdino_swinb_cogcoor.pth">HF link</a> 
+      <td><a href="https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha2/groundingdino_swinb_cogcoor.pth">GitHub link</a>  | <a href="https://huggingface.co/ShilongLiu/GroundingDINO/resolve/main/groundingdino_swinb_cogcoor.pth">HF link</a>
       <td><a href="https://github.com/IDEA-Research/GroundingDINO/blob/main/groundingdino/config/GroundingDINO_SwinB_cfg.py">link</a></td>
     </tr>
   </tbody>
@@ -355,7 +355,7 @@ Thanks [Stable Diffusion](https://github.com/Stability-AI/StableDiffusion) and [
 
 ## :black_nib: Citation
 
-If you find our work helpful for your research, please consider citing the following BibTeX entry.   
+If you find our work helpful for your research, please consider citing the following BibTeX entry.
 
 ```bibtex
 @article{liu2023grounding,
@@ -365,7 +365,3 @@ If you find our work helpful for your research, please consider citing the follo
   year={2023}
 }
 ```
-
-
-
-

@@ -218,7 +218,7 @@ if __name__ == "__main__":
         license = f.read()
 
     write_version_file()
-    
+
     # Set compiler to g++ to match PyTorch's build (PyTorch was built with g++)
     import os
     if "CXX" not in os.environ:
