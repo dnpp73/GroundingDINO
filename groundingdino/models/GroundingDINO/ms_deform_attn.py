@@ -28,7 +28,8 @@ from torch.nn.init import constant_, xavier_uniform_
 try:
     from groundingdino import _C
 except:
-    warnings.warn("Failed to load custom C++ ops. Running on CPU mode Only!")
+    # warnings.warn("Failed to load custom C++ ops. Running on CPU mode Only!")
+    pass
 
 
 # helpers
@@ -220,12 +221,12 @@ class MultiScaleDeformableAttention(nn.Module):
         constant_(self.output_proj.bias.data, 0.0)
 
     def freeze_sampling_offsets(self):
-        print("Freeze sampling offsets")
+        # print("Freeze sampling offsets")
         self.sampling_offsets.weight.requires_grad = False
         self.sampling_offsets.bias.requires_grad = False
 
     def freeze_attention_weights(self):
-        print("Freeze attention weights")
+        # print("Freeze attention weights")
         self.attention_weights.weight.requires_grad = False
         self.attention_weights.bias.requires_grad = False
 
@@ -326,7 +327,7 @@ class MultiScaleDeformableAttention(nn.Module):
                     reference_points.shape[-1]
                 )
             )
-    
+
         if torch.cuda.is_available() and value.is_cuda:
             halffloat = False
             if value.dtype == torch.float16:

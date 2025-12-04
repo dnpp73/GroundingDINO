@@ -702,11 +702,11 @@ class TransformerDecoder(nn.Module):
                 cross_attn_mask=memory_mask,
             )
             if output.isnan().any() | output.isinf().any():
-                print(f"output layer_id {layer_id} is nan")
+                # print(f"output layer_id {layer_id} is nan")
                 try:
                     num_nan = output.isnan().sum().item()
                     num_inf = output.isinf().sum().item()
-                    print(f"num_nan {num_nan}, num_inf {num_inf}")
+                    # print(f"num_nan {num_nan}, num_inf {num_inf}")
                 except Exception as e:
                     print(e)
                     # if os.environ.get("SHILONG_AMP_INFNAN_DEBUG") == '1':
@@ -859,7 +859,7 @@ class DeformableTransformerDecoderLayer(nn.Module):
         return tensor if pos is None else tensor + pos
 
     def forward_ffn(self, tgt):
-        with torch.cuda.amp.autocast(enabled=False):
+        with torch.amp.autocast('cuda', enabled=False):
             tgt2 = self.linear2(self.dropout3(self.activation(self.linear1(tgt))))
         tgt = tgt + self.dropout4(tgt2)
         tgt = self.norm3(tgt)

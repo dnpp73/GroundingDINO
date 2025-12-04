@@ -139,7 +139,7 @@ def all_gather_cpu(data):
     if cpu_group is None:
         dist.all_gather(size_list, local_size)
     else:
-        print("gathering on cpu")
+        # print("gathering on cpu")
         dist.all_gather(size_list, local_size, group=cpu_group)
     size_list = [int(size.item()) for size in size_list]
     max_size = max(size_list)
