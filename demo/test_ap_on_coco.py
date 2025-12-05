@@ -10,7 +10,7 @@ from torch.utils.data import DataLoader, DistributedSampler
 
 from groundingdino.models import build_model
 import groundingdino.datasets.transforms as T
-from groundingdino.util import box_ops, get_tokenlizer
+from groundingdino.util import box_ops, get_tokenizer
 from groundingdino.util.misc import clean_state_dict, collate_fn
 from groundingdino.util.slconfig import SLConfig
 
@@ -66,7 +66,7 @@ class CocoDetection(torchvision.datasets.CocoDetection):
 class PostProcessCocoGrounding(nn.Module):
     """ This module converts the model's output into the format expected by the coco api"""
 
-    def __init__(self, num_select=300, coco_api=None, tokenlizer=None) -> None:
+    def __init__(self, num_select=300, coco_api=None, tokenizer=None) -> None:
         super().__init__()
         self.num_select = num_select
 
@@ -76,7 +76,7 @@ class PostProcessCocoGrounding(nn.Module):
         captions, cat2tokenspan = build_captions_and_token_span(cat_list, True)
         tokenspanlist = [cat2tokenspan[cat] for cat in cat_list]
         positive_map = create_positive_map_from_span(
-            tokenlizer(captions), tokenspanlist)  # 80, 256. normed
+            tokenizer(captions), tokenspanlist)  # 80, 256. normed
 
         id_map = {0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 13, 12: 14, 13: 15, 14: 16, 15: 17, 16: 18, 17: 19, 18: 20, 19: 21, 20: 22, 21: 23, 22: 24, 23: 25, 24: 27, 25: 28, 26: 31, 27: 32, 28: 33, 29: 34, 30: 35, 31: 36, 32: 37, 33: 38, 34: 39, 35: 40, 36: 41, 37: 42, 38: 43, 39: 44, 40: 46,
                   41: 47, 42: 48, 43: 49, 44: 50, 45: 51, 46: 52, 47: 53, 48: 54, 49: 55, 50: 56, 51: 57, 52: 58, 53: 59, 54: 60, 55: 61, 56: 62, 57: 63, 58: 64, 59: 65, 60: 67, 61: 70, 62: 72, 63: 73, 64: 74, 65: 75, 66: 76, 67: 77, 68: 78, 69: 79, 70: 80, 71: 81, 72: 82, 73: 84, 74: 85, 75: 86, 76: 87, 77: 88, 78: 89, 79: 90}
@@ -160,9 +160,9 @@ def main(args):
         dataset, batch_size=1, shuffle=False, num_workers=args.num_workers, collate_fn=collate_fn)
 
     # build post processor
-    tokenlizer = get_tokenlizer.get_tokenlizer(cfg.text_encoder_type)
+    tokenizer = get_tokenizer.get_tokenizer(cfg.text_encoder_type)
     postprocessor = PostProcessCocoGrounding(
-        coco_api=dataset.coco, tokenlizer=tokenlizer)
+        coco_api=dataset.coco, tokenizer=tokenizer)
 
     # build evaluator
     evaluator = CocoGroundingEvaluator(

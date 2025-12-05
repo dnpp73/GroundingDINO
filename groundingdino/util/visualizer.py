@@ -93,7 +93,7 @@ def rainbow_text(x, y, ls, lc, **kw):
 
 
 class COCOVisualizer:
-    def __init__(self, coco=None, tokenlizer=None) -> None:
+    def __init__(self, coco=None, tokenizer=None) -> None:
         self.coco = coco
 
     def visualize(self, img, tgt, caption=None, dpi=180, savedir="vis"):

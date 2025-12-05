@@ -104,12 +104,12 @@ def get_grounding_output(model, image, caption, box_threshold, text_threshold=No
         boxes_filt = boxes_filt[filt_mask]  # num_filt, 4
 
         # get phrase
-        tokenlizer = model.tokenizer
-        tokenized = tokenlizer(caption)
+        tokenizer = model.tokenizer
+        tokenized = tokenizer(caption)
         # build pred
         pred_phrases = []
         for logit, box in zip(logits_filt, boxes_filt):
-            pred_phrase = get_phrases_from_posmap(logit > text_threshold, tokenized, tokenlizer)
+            pred_phrase = get_phrases_from_posmap(logit > text_threshold, tokenized, tokenizer)
             if with_logits:
                 pred_phrases.append(pred_phrase + f"({str(logit.max().item())[:4]})")
             else:
