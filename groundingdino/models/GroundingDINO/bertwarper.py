@@ -17,7 +17,6 @@ from transformers.modeling_outputs import BaseModelOutputWithPoolingAndCrossAtte
 class BertModelWarper(nn.Module):
     def __init__(self, bert_model):
         super().__init__()
-        # self.bert = bert_modelc
 
         self.config = bert_model.config
         self.embeddings = bert_model.embeddings

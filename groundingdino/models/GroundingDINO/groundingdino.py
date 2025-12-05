@@ -116,7 +116,7 @@ class GroundingDINO(nn.Module):
         # freeze
 
         # special tokens
-        self.specical_tokens = self.tokenizer.convert_tokens_to_ids(["[CLS]", "[SEP]", ".", "?"])
+        self.special_tokens = self.tokenizer.convert_tokens_to_ids(["[CLS]", "[SEP]", ".", "?"])
 
         # prepare input projection layers
         if num_feature_levels > 1:
@@ -215,7 +215,7 @@ class GroundingDINO(nn.Module):
         if hasattr(self, 'features'):
             del self.features
         if hasattr(self,'poss'):
-            del self.poss 
+            del self.poss
 
     def set_image_features(self, features , poss):
         self.features = features
@@ -236,8 +236,8 @@ class GroundingDINO(nn.Module):
                            (center_x, center_y, width, height). These values are normalized in [0, 1],
                            relative to the size of each individual image (disregarding possible padding).
                            See PostProcess for information on how to retrieve the unnormalized bounding box.
-           - "aux_outputs": Optional, only returned when auxilary losses are activated. It is a list of
-                            dictionnaries containing the two above keys for each decoder layer.
+           - "aux_outputs": Optional, only returned when auxiliary losses are activated. It is a list of
+                            dictionaries containing the two above keys for each decoder layer.
         """
         if targets is None:
             captions = kw["captions"]
@@ -253,7 +253,7 @@ class GroundingDINO(nn.Module):
             position_ids,
             cate_to_token_mask_list,
         ) = generate_masks_with_special_tokens_and_transfer_map(
-            tokenized, self.specical_tokens, self.tokenizer
+            tokenized, self.special_tokens, self.tokenizer
         )
 
         if text_self_attention_masks.shape[1] > self.max_text_len:
@@ -375,7 +375,7 @@ class GroundingDINO(nn.Module):
         ]
 
 
-@MODULE_BUILD_FUNCS.registe_with_name(module_name="groundingdino")
+@MODULE_BUILD_FUNCS.register_with_name(module_name="groundingdino")
 def build_groundingdino(args):
 
     backbone = build_backbone(args)
